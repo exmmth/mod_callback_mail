@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.6" client="site" method="upgrade">
+	<name>Mail Callback</name>
+	<author>Aleksey A. Morozov</author>
+	<authorEmail>alekvolsk@yandex.ru</authorEmail>
+	<authorUrl>https://alekvolsk.pw</authorUrl>
+	<copyright>© 2018 Aleksey A. Morozov. All right reserved.</copyright>
+	<license>GNU GPL v3 or later</license>
+	<version>1.1.0</version>
+	<creationDate>June 2018</creationDate>
+	<description><![CDATA[<h3>Mail Callback</h3><p>The module displays a feedback form on the site, sending messages to e-mail.<br><br></p>]]></description>
+	<scriptfile>script.php</scriptfile>
+	
+	<files>
+		<filename module="mod_callback_mail">mod_callback_mail.php</filename>
+		<filename>helper.php</filename>
+		<folder>assets</folder>
+		<folder>fields</folder>
+		<folder>forms</folder>
+		<folder>layouts</folder>
+		<folder>tmpl</folder>
+	</files>
+	
+	<languages folder="languages">
+		<language tag="en-GB">en-GB/en-GB.mod_callback_mail.ini</language>
+		<language tag="en-GB">en-GB/en-GB.mod_callback_mail.sys.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.mod_callback_mail.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.mod_callback_mail.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			
+			<fieldset name="basic" addfieldpath="modules/mod_callback_mail/fields">
+				
+				<field name="showlabels" type="radio" label="MOD_CALLBACK_MAIL_PRM_SHOWLABELS_LABEL" class="btn-group" default="1">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="mailtitle" type="text" label="MOD_CALLBACK_MAIL_PRM_MAILTITLE_LABEL" description="MOD_CALLBACK_MAIL_PRM_MAILTITLE_DESC" class="input-xxlarge" />
+				<field name="premsg" type="textarea" label="MOD_CALLBACK_MAIL_PRM_PREMSG_LABEL" description="MOD_CALLBACK_MAIL_PRM_PREMSG_DESC" class="input-xxlarge" />
+				<field name="postmsg" type="textarea" label="MOD_CALLBACK_MAIL_PRM_POSTMSG_LABEL" description="MOD_CALLBACK_MAIL_PRM_POSTMSG_DESC" class="input-xxlarge" />
+				<field name="msgtemplate" type="layoutsmodule" label="MOD_CALLBACK_MAIL_PRM_MSGTEMPLATE" default="_:default" />
+				
+				<field name="hr1" type="spacer" hr="true" />
+
+				<field name="sender_type" type="list" label="MOD_CALLBACK_MAIL_PRM_SENDER_TYPE_LABEL" default="1">
+					<option value="1">MOD_CALLBACK_MAIL_PRM_TYPE_SYSTEM</option>
+					<option value="0">MOD_CALLBACK_MAIL_PRM_TYPE_CUSTOM</option>
+				</field>
+				<field name="sender_name" type="text" label="MOD_CALLBACK_MAIL_PRM_SENDER_NAME_LABEL" class="input-xxlarge" showon="sender_type:0" />
+				<field name="sender_mail" type="email" label="MOD_CALLBACK_MAIL_PRM_SENDER_MAIL_LABEL" class="input-xxlarge" showon="sender_type:0" />
+				<field name="recipient_name" type="text" label="MOD_CALLBACK_MAIL_PRM_RECIPIENT_NAME_LABEL" class="input-xxlarge" />
+				<field name="recipient_mail" type="email" label="MOD_CALLBACK_MAIL_PRM_RECIPIENT_MAIL_LABEL" required="required" class="input-xxlarge" />
+
+			</fieldset>
+            
+			<fieldset name="els">
+                <field name="items" type="subform" label="COM_MODULES_ELS_FIELDSET_LABEL" formsource="/modules/mod_callback_mail/forms/form.xml" multiple="true" min="0" layout="joomla.form.field.subform.repeatable" />
+            </fieldset>
+			
+			<fieldset name="advanced">
+				<field name="layout" type="modulelayout" label="JFIELD_ALT_LAYOUT_LABEL" description="JFIELD_ALT_MODULE_LAYOUT_DESC" default="_:default" />
+				<field name="moduleclass_sfx" type="textarea" rows="3" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+			
+		</fields>
+	</config>
+	
+</extension>

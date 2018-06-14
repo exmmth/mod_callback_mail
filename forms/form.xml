@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<field name="fname" type="text" label="MOD_CALLBACK_MAIL_PRM_F_NAME_LABEL" description="MOD_CALLBACK_MAIL_PRM_F_NAME_DESC" required="required" />
+	<field name="ftype" type="list" label="MOD_CALLBACK_MAIL_PRM_F_TYPE_LABEL" required="required" >
+		<option value="text">text</option>
+		<option value="email">email</option>
+		<option value="url">url</option>
+		<option value="tel">tel</option>
+		<option value="password">password</option>
+		<option value="textarea">textarea</option>
+		<option value="select">select</option>
+		<option value="checkbox">checkbox</option>
+		<option value="radio">radio</option>
+	</field>
+	<field name="ftitle" type="text" label="MOD_CALLBACK_MAIL_PRM_F_TITLE_LABEL" description="MOD_CALLBACK_MAIL_PRM_F_TITLE_DESC" required="required" class="input-xxlarge" />
+	<field name="flist" type="textarea" label="MOD_CALLBACK_MAIL_PRM_F_LIST_LABEL" description="MOD_CALLBACK_MAIL_PRM_F_LIST_DESC" class="input-xxlarge" showon="ftype:select[OR]ftype:radio" />
+	<field name="fplaceholder" type="text" label="MOD_CALLBACK_MAIL_PRM_F_PLACEHOLDER_LABEL" description="MOD_CALLBACK_MAIL_PRM_F_PLACEHOLDER_DESC" class="input-xxlarge" />
+	<field name="frequired" type="list" label="MOD_CALLBACK_MAIL_PRM_F_REQUIRED_LABEL" default="0" >
+		<option value="1">JYES</option>
+		<option value="0">JNO</option>
+	</field>
+	<field name="fclass" type="text" label="MOD_CALLBACK_MAIL_PRM_F_CLASS_LABEL" description="MOD_CALLBACK_MAIL_PRM_F_CLASS_DESC" class="input-xxlarge" />
+</form>
