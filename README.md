@@ -2,6 +2,8 @@
 
 **v1.1.0**
 
+![Github Releases](https://img.shields.io/github/downloads/AlekVolsk/mod_callback_mail/latest/total.svg)
+
 **Joomla 3.6 or later**
 
 **PHP 5.6 or later**
