@@ -1,14 +1,20 @@
 <?php defined('_JEXEC') or die;
 /*
  * @package     mod_callback_mail
- * @copyright   Copyright (C) 2018 Aleksey A. Morozov (AlekVolsk). All rights reserved.
+ * @copyright   Copyright (C) 2019 Aleksey A. Morozov (AlekVolsk). All rights reserved.
  * @license     GNU General Public License version 3 or later; see http://www.gnu.org/licenses/gpl-3.0.txt
  */
 
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+
 ?>
 
-<div class="mod_mail_callback<?php echo $moduleclass_sfx; ?>">
-	<form id="mod_mail_callback_<?php echo $module->id; ?>" class="uk-form uk-form-stacked" action="" method="post" enctype="multipart/form-data">
+<div class="mod_callback_mail<?php echo $moduleclass_sfx; ?>">
+	<form id="mod_callback_mail_<?php echo $module->id; ?>" class="uk-form uk-form-stacked" action="" method="post" enctype="multipart/form-data">
+		
+		<div class="mod_callback_mail_alert uk-margin uk-alert" style="display:none;"></div>
+
 		<?php foreach( $fields as $i => $fielditem ) { ?>
 		<div class="uk-margin">
 			<?php
@@ -87,13 +93,10 @@
 		<?php } ?>
 		
 		<div class="uk-margin">
-			<button type="submit" class="uk-button uk-button-default"><?php echo JText::_('MOD_CALLBACK_MAIL_SUBMIT_LABEL'); ?></button>
+			<button type="submit" class="uk-button uk-button-default"><?php echo Text::_('MOD_CALLBACK_MAIL_SUBMIT_LABEL'); ?></button>
 		</div>
 		
-		<input type="hidden" name="option" value="com_ajax" />
-		<input type="hidden" name="module" value="callback_mail" />
-		<input type="hidden" name="format" value="raw" />
-		<?php echo JHtml::_('form.token'); ?>
+		<?php echo HTMLHelper::_('form.token'); ?>
 
 	</form>
 </div>
