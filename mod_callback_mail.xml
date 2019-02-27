@@ -6,7 +6,7 @@
 	<authorUrl>https://alekvolsk.pw</authorUrl>
 	<copyright>© 2019 Aleksey A. Morozov. All right reserved.</copyright>
 	<license>GNU GPL v3 or later</license>
-	<version>1.2.0</version>
+	<version>1.3.0</version>
 	<creationDate>February 2019</creationDate>
 	<description><![CDATA[<h3>Mail Callback</h3><p>The module displays a feedback form on the site, sending messages to e-mail.<br><br></p>]]></description>
 	<scriptfile>script.php</scriptfile>
@@ -41,7 +41,6 @@
 				<field name="premsg" type="textarea" label="MOD_CALLBACK_MAIL_PRM_PREMSG_LABEL" description="MOD_CALLBACK_MAIL_PRM_PREMSG_DESC" class="input-xxlarge" />
 				<field name="postmsg" type="textarea" label="MOD_CALLBACK_MAIL_PRM_POSTMSG_LABEL" description="MOD_CALLBACK_MAIL_PRM_POSTMSG_DESC" class="input-xxlarge" />
 				<field name="msgtemplate" type="layoutsmodule" label="MOD_CALLBACK_MAIL_PRM_MSGTEMPLATE" default="_:default" />
-
 				<field name="hr1" type="spacer" hr="true" />
 
 				<field name="sender_type" type="list" label="MOD_CALLBACK_MAIL_PRM_SENDER_TYPE_LABEL" default="1">
@@ -52,6 +51,10 @@
 				<field name="sender_mail" type="email" label="MOD_CALLBACK_MAIL_PRM_SENDER_MAIL_LABEL" class="input-xxlarge" showon="sender_type:0" />
 				<field name="recipient_name" type="text" label="MOD_CALLBACK_MAIL_PRM_RECIPIENT_NAME_LABEL" class="input-xxlarge" />
 				<field name="recipient_mail" type="email" label="MOD_CALLBACK_MAIL_PRM_RECIPIENT_MAIL_LABEL" required="required" class="input-xxlarge" />
+				<field name="hr2" type="spacer" hr="true" />
+				
+				<field name="alert-success" type="text" label="MOD_CALLBACK_MAIL_PRM_ALERT_SUCCESS_LABEL" default="alert-success" class="input-xlarge" />
+				<field name="alert-error" type="text" label="MOD_CALLBACK_MAIL_PRM_ALERT_ERROR_LABEL" default="alert-error" class="input-xlarge" />
 
 			</fieldset>
 

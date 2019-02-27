@@ -10,7 +10,7 @@ use Joomla\CMS\Language\Text;
 
 ?>
 
-<div class="mod_callback_mail<?php echo $moduleclass_sfx; ?>">
+<div class="mod_callback_mail <?php echo $moduleclass_sfx; ?>">
 	<form id="mod_callback_mail_<?php echo $module->id; ?>" class="form-vertical" action="" method="post" enctype="multipart/form-data">
 		
 		<div class="mod_callback_mail_alert control-group alert" style="display:none;"></div>

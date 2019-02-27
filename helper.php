@@ -29,11 +29,11 @@ class ModCallbackMailHelper
     static protected function checkForm()
     {
         $rsl = explode(':', filter_input(INPUT_POST, 'rsl', FILTER_SANITIZE_STRING));
+        $rst = filter_input(INPUT_POST, 'rst', FILTER_SANITIZE_STRING);
         $base = Uri::base();
-        $current = Uri::current();
         return
             !empty($_POST) && (
-				($_SERVER['HTTP_REFERER'] == $base || $_SERVER['HTTP_REFERER'] == $base . 'index.php' || $_SERVER['HTTP_REFERER'] == $current) && 
+				($_SERVER['HTTP_REFERER'] == $base || $_SERVER['HTTP_REFERER'] == $rst) && 
 				(isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? $_SERVER['HTTP_X_REQUESTED_WITH'] == XMLHttpRequest : true) && 
 				(count($rsl) === 2 && (int)$rsl[0] > 0 && (int)$rsl[1] > 0)
 			);
@@ -107,10 +107,41 @@ class ModCallbackMailHelper
             self::printJson(Text::_('JINVALID_TOKEN'));
         }
 
+        $moduleHash = explode(':', filter_input(INPUT_POST, 'mh', FILTER_SANITIZE_STRING));
+        if (!$moduleHash || !$moduleHash[0] || !$moduleHash[1]) {
+            $data = [
+                'referer' => $_SERVER['HTTP_REFERER'],
+                'result' => 'Empty form hash'
+            ];
+            Log::add(json_encode($data), Log::ERROR);
+            self::printJson(Text::_('JINVALID_TOKEN'));
+        }
+        
+        $session = Factory::getSession();
+        $sessionHash = $session->get('mod_callback_mail_' . $moduleHash[0], '');
+        if ($sessionHash !== $moduleHash[1])
+        {
+            $data = [
+                'referer' => $_SERVER['HTTP_REFERER'],
+                'result' => 'Invalid form hash'
+            ];
+            Log::add(json_encode($data), Log::ERROR);
+            self::printJson(Text::_('JINVALID_TOKEN'));
+        }
+
         $language = Factory::getLanguage();
         $language->load($extension, JPATH_BASE, null, true);
 
-        $module = ModuleHelper::getModule($extension);
+        $module = ModuleHelper::getModuleById($moduleHash[0]);
+        if (!$module->id)
+        {
+            $data = [
+                'referer' => $_SERVER['HTTP_REFERER'],
+                'result' => 'Empty module params'
+            ];
+            Log::add(json_encode($data), Log::ERROR);
+            self::printJson(Text::_('JINVALID_TOKEN'));
+        }
         $params = new Registry();
         $params->loadString($module->params);
         $fields = self::getFields($params);
